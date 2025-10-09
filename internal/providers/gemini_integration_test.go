@@ -29,16 +29,8 @@ var geminiTestModels = []geminiTestModel{
 		modelID:    "gemini-2.0-flash",
 		testPrompt: "Hello! Can you tell me a short joke?",
 	},
-	{
-		name:       "Gemini-1.5-Flash",
-		modelID:    "gemini-1.5-flash",
-		testPrompt: "What is 2+2?",
-	},
-	{
-		name:       "Gemini-1.5-Pro",
-		modelID:    "gemini-1.5-pro",
-		testPrompt: "Explain quantum computing in one sentence.",
-	},
+	// Note: Gemini 1.5 models (gemini-1.5-flash and gemini-1.5-pro) have been deprecated
+	// by Google and are no longer available in the API as of October 2025
 }
 
 // TestGeminiIntegration_Models tests multiple Gemini models using subtests
