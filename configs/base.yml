@@ -285,11 +285,25 @@ providers:
           burst_tokens: 4_000
           burst_requests: 100
         pricing:
-          input: 0.25
-          output: 1.25
+          input: 15.00
+          output: 75.00
       "claude-sonnet-4-0":
         enabled: true
         aliases: ["claude-sonnet-4", "claude-sonnet-4-20250514"]
+        limits:
+          tokens_per_minute: 80_000
+          requests_per_minute: 1_000
+          tokens_per_day: 1_920_000
+          requests_per_day: 1_440_000
+          burst_tokens: 8_000
+          burst_requests: 100
+        pricing:
+          input: 3.00
+          output: 15.00
+
+      "claude-sonnet-4-5":
+        enabled: true
+        aliases: ["claude-sonnet-4-5-20250929", "claude-sonnet-4.5"]
         limits:
           tokens_per_minute: 80_000
           requests_per_minute: 1_000
@@ -319,6 +333,20 @@ providers:
         pricing:
           input: 3.00
           output: 15.00
+
+      "claude-opus-4-1":
+        enabled: true
+        aliases: ["claude-opus-4-1-20250805", "claude-opus-4.1"]
+        limits:
+          tokens_per_minute: 40_000
+          requests_per_minute: 1_000
+          tokens_per_day: 960_000
+          requests_per_day: 1_440_000
+          burst_tokens: 4_000
+          burst_requests: 100
+        pricing:
+          input: 15.00
+          output: 75.00
       "claude-3-5-sonnet":
         enabled: true
         aliases:
