@@ -509,15 +509,16 @@ func runServer(yamlConfig *config.YAMLConfig) {
 		}
 	}
 
-	// Register providers
-	openAIProvider := providers.NewOpenAIProxy()
-	globalProviderManager.RegisterProvider(openAIProvider)
-
-	anthropicProvider := providers.NewAnthropicProxy()
-	globalProviderManager.RegisterProvider(anthropicProvider)
-
-	geminiProvider := providers.NewGeminiProxy()
-	globalProviderManager.RegisterProvider(geminiProvider)
+	// Register providers and log each instance explicitly so startup logs reflect the active list
+	for _, provider := range []providers.Provider{
+		providers.NewOpenAIProxy(),
+		providers.NewAnthropicProxy(),
+		providers.NewGeminiProxy(),
+		providers.NewGroqProxy(),
+	} {
+		globalProviderManager.RegisterProvider(provider)
+		logger.Info("Registered provider instance", "provider", provider.GetName())
+	}
 
 	// Add middleware (order matters for streaming)
 	r.Use(middleware.MetaURLRewritingMiddleware(globalProviderManager)) // URL rewriting must happen first
@@ -607,6 +608,7 @@ func runServer(yamlConfig *config.YAMLConfig) {
 	logger.Info("OpenAI API endpoints available", "url", "http://0.0.0.0:"+port+"/openai/")
 	logger.Info("Anthropic API endpoints available", "url", "http://0.0.0.0:"+port+"/anthropic/")
 	logger.Info("Gemini API endpoints available", "url", "http://0.0.0.0:"+port+"/gemini/")
+	logger.Info("Groq API endpoints available", "url", "http://0.0.0.0:"+port+"/groq/")
 	logger.Info("Meta routes with user ID available", "pattern", "http://0.0.0.0:"+port+"/meta/{userID}/{provider}/")
 
 	server := &http.Server{

@@ -32,6 +32,8 @@ func GetProviderFromRequest(providerManager *providers.ProviderManager, req *htt
 				return providerManager.GetProvider("anthropic")
 			case "gemini":
 				return providerManager.GetProvider("gemini")
+			case "groq":
+				return providerManager.GetProvider("groq")
 			}
 		}
 	}
@@ -43,6 +45,8 @@ func GetProviderFromRequest(providerManager *providers.ProviderManager, req *htt
 		return providerManager.GetProvider("anthropic")
 	} else if strings.HasPrefix(path, "/gemini/") {
 		return providerManager.GetProvider("gemini")
+	} else if strings.HasPrefix(path, "/groq/") {
+		return providerManager.GetProvider("groq")
 	}
 
 	return nil

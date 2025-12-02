@@ -14,7 +14,8 @@ import (
 func isProviderRoute(path string) bool {
 	return strings.HasPrefix(path, "/openai/") ||
 		strings.HasPrefix(path, "/anthropic/") ||
-		strings.HasPrefix(path, "/gemini/")
+		strings.HasPrefix(path, "/gemini/") ||
+		strings.HasPrefix(path, "/groq/")
 }
 
 // isAPIEndpoint checks if the request is for an API endpoint that should be cost tracked
@@ -34,6 +35,8 @@ func getProviderFromPath(path string) string {
 		return "anthropic"
 	} else if strings.HasPrefix(path, "/gemini/") {
 		return "gemini"
+	} else if strings.HasPrefix(path, "/groq/") {
+		return "groq"
 	}
 	return ""
 }

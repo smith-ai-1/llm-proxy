@@ -6,7 +6,7 @@ A simple, Go-based alternative to the `litellm` proxy, without all the extra stu
 
 ## Features
 
-- **Multi-provider support**: Full support for OpenAI, Anthropic, and Gemini
+- **Multi-provider support**: Full support for OpenAI, Anthropic, Gemini, and Groq (OpenAI-compatible)
 - **Streaming Support**: Native streaming support for all providers
 - **OpenAI Integration**: Complete OpenAI API compatibility with `/openai` prefix
 - **Anthropic Integration**: Claude API support with `/anthropic` prefix
@@ -172,6 +172,13 @@ features:
 - `POST /gemini/v1/models/{model}:generateContent` - Gemini content generation (streaming supported)
 - `POST /gemini/v1/models/{model}:streamGenerateContent` - Explicit streaming endpoint
 - `*  /gemini/v1/*` - All other Gemini API endpoints
+
+### Groq
+
+- `POST /groq/v1/chat/completions` - Groq chat/completions (OpenAI-compatible, streaming supported)
+- `POST /groq/v1/completions` - Groq completions endpoint
+- `POST /groq/v1/responses` - Groq Responses API compatibility
+- `*  /groq/v1/*` - All other Groq API endpoints
 
 ## Architecture
 

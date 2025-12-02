@@ -63,6 +63,23 @@ func TestGetProviderFromRequest_Gemini(t *testing.T) {
 	}
 }
 
+func TestGetProviderFromRequest_Groq(t *testing.T) {
+	manager := providers.NewProviderManager()
+	groqProvider := providers.NewGroqProxy()
+	manager.RegisterProvider(groqProvider)
+
+	req := httptest.NewRequest("POST", "/groq/v1/chat/completions", nil)
+	provider := GetProviderFromRequest(manager, req)
+
+	if provider == nil {
+		t.Fatal("Expected provider to be found for Groq path")
+	}
+
+	if provider.GetName() != "groq" {
+		t.Errorf("Expected provider name 'groq', got '%s'", provider.GetName())
+	}
+}
+
 func TestGetProviderFromRequest_UnknownPath(t *testing.T) {
 	manager := providers.NewProviderManager()
 
